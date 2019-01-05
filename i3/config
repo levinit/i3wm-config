@@ -1,0 +1,307 @@
+# i3 config file
+# see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Super key(mod4 =windows logo key/Command key)
+set $mod Mod4
+
+#===autostart parograms===
+#exec --no-startup-id xcompmgr &
+#exec --no-startup-id mate-power-manager
+#exec --no-startup-id nm-applet
+#exec --no-startup-id fcitx
+#exec --no-startup-id ibus
+#exec --no-startup-id megasync
+#exec --no-startup-id redshift
+#exec --no-startup-id blueman-applet
+#exec --no-startup-id ss-qt5
+
+#===programs shortcuts===
+
+# dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+# xfce drop down terminal
+bindsym mod1+slash exec xfce4-terminal --drop-down
+
+# browsers--firefox chromium
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+c exec chromium
+
+# printscreen--scrot(Print=PrtSc/PrintScreen)
+bindsym $mod+Print exec scrot
+
+# GUI file manager
+bindsym $mod+e exec --no-startup-id thunar 
+
+# app finder
+bindsym mod1+F2 exec --no-startup-id xfce4-appfinder 
+
+# bar toggle, hide or show 
+bindsym $mod+m bar mode toggle
+
+#===appearance===
+#---window style---
+
+# window gap
+gaps inner 8
+gaps outer 5
+smart_gaps on
+
+# new window
+new_window none
+new_float normal
+hide_edge_borders both
+
+# window colors
+#  class                 border   backgr.  text  indicator  child_border
+client.focused          #4c7899  #285577  #ffffff  #2e9ef4   #285577
+client.focused_inactive #81c2d6  #5f676a  #ffffff  #484e50   #0b6e48
+client.unfocused        #c9cabb  #222222  #888888  #292d2e   #222222
+client.urgent           #2f343a  #900000  #ffffff  #199475   #900000
+client.placeholder      #a2b4ba  #0c0c0c  #ffffff  #1793d0   #0c0c0c
+client.background       #82abba
+
+# popups
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+# float programs(find the programs'names in "/usr/share/applictions")
+for_window [class="Xfce4-terminal"] floating enable
+for_window [class="Gpicview"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="Xarchiver"] floating enable
+for_window [class="Genymotion"] floating enable
+for_window [class="Vlc"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="Thunar"] floating enable
+for_window [class="shadowsocks-qt5"] floating enable
+for_window [class="Catfish"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
+
+
+#---wallpaper---
+
+# static mode
+#exec --no-startup-id feh --bg-scale "~/Pictures/wallpapers/wallpaper.jpg"
+
+# random mode
+exec --no-startup-id  ~/.config/i3/wallpaper.sh &
+
+# font
+font pango:monospace 14
+
+#---bar---
+
+bar {
+#    status_command i3status -c ~/.config/i3/i3status.conf
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
+    position top
+    mode hide
+    workspace_buttons yes
+    #output eDP1
+    #tray_output primary
+    tray_padding 0
+    separator_symbol "|"
+
+    colors {
+    background #285477
+    statusline #dedede
+    separator #2d2d2d
+    focused_workspace #636e88 #285de7 #dedfdg
+    active_workspace #556677 #234567 #56ef67
+    inactive_workspace #636d72 #2d2d2d #dedede
+    urgent_workspace #ffffff #900000 #d23d32
+    }
+    
+#height 30
+}
+
+# tray icons(eDP1 is the display device's name,use the command "xrandr" to see.)
+exec --no-startup-id xrandr --output eDP1 --primary
+
+# external display device(use the command "xrandr" to see the display device name)
+#exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
+
+#===workspace control===
+
+# Workspace names
+#workspace "1:Arch" output eDP1
+#workspace "2:Web" output eDP1
+#workspace "3:Code" output eDP1
+#workspace "9:Mail" output eDP1
+
+# putting clients on specific workspaces
+assign [class="Chromium"] 1
+assign [class="code"] 3
+
+
+#---switch workspace---
+
+# switch to near workspace
+bindsym $mod+Tab workspace next
+bindsym mod1+Tab workspace prev
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+
+#===window control===
+
+# fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# kill focused window($mod4=Alt)
+bindsym mod1+F4 kill
+
+# hide | show window(minus is "-" and plus is "+".)
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+c layout toggle split
+
+# change border style
+bindsym $mod+u border none
+bindsym $mod+n border normal
+bindsym $mod+o border 1pixel
+bindsym $mod+b border toggle
+
+#---window focus---
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# foucus follows mouse(cursor)
+focus_follows_mouse yes
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# focus the parent container
+bindsym $mod+mod4+p focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+#---move window---
+
+# Use Mouse+$mod to drag a floating window
+floating_modifier $mod
+
+# move floating/tiling window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#---split window---
+
+# horizontal orientation
+bindsym $mod+mod1+h split h
+
+# vertical orientation
+bindsym $mod+v split v
+
+
+#---resize window---
+bindsym $mod+r mode "resize"
+
+#resize shortcuts (also you can use the mouse for resizing)
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+    #same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+#===volume control===
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2dB- unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+
+#===power manager===
+set $mode_system select: lock(L) exit(E) reboot(R) poweroff(O) cancel(Esc)
+bindsym $mod+Shift+q mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym o exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym Escape mode "default"
+}
+
+# screen off | sleep | shutdown(time unit: seconds)
+#exec --no-startup-id xset dpms 300 1357 6789
+exec --no-startup-id xset dpms 365 1357
+
+
+#===manage i3===
+
+# reload the configuration file
+bindsym $mod+Shift+r reload
+
+# restart i3 inplace
+bindsym $mod+Shift+s restart
+
+# i3lock
+ mode "i3lock: Return to lock/Escape to Cancel" {
+            bindsym Return mode "default" exec i3lock -I 600 -i ~/Pictures/lock.jpg
+            bindsym Escape mode "default"
+    }
+
+bindsym Ctrl+mod1+l mode "i3lock: Return to lock/Escape to Cancel"
+
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
