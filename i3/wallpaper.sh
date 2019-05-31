@@ -6,10 +6,10 @@ then
     echo "wallpaper err: Can not found command feh." > ~/i3wm-wallpaper.err
     exit 127
 fi
- 
+
 #===change these config start===
 
-#wallpapers directory path
+#wallpapers directory
 path=~/Pictures/wallpapers
 
 #time interval
@@ -27,9 +27,9 @@ do
 		[[ -f $i ]] && files+=("$i")
 	done
 	range=${#files[@]}
-	
+
 	((range)) && feh --bg-scale "${files[RANDOM % range]}"
-	
+
 	sleep $interval
 done
 

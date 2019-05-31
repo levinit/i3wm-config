@@ -2,16 +2,18 @@
 
 ---
 
-![](arch-i3.jpg)
+![](screenshot.png)
 
 # install & configure
 
 ## install softwares
 
+You can search for package names using the package manager, or search keywords  on [pkgs.org](https://pkgs.org) to determine the package name.
+
 - base
 
-  -  `i3` : in some distributions,  `i3`  may be a  package-group name, that contains i3 wm and other components,  `i3-wm` ,  `i3-gaps`,  `i3block` ,  `i3lock`and`i3status`. And in some distributions,  `i3` may only refer to `i3wm`. (you can search keywords on [pkgs.org](https://pkgs.org) to determine the package name.)
-  -  Suitable terminal (see [terminal](#terminal), select a terminal emulator ) 
+  -  `i3` : in some distributions,  `i3`  may be a  package-group name, that contains i3 wm and other components,  `i3-wm` ,  `i3-gaps`,  `i3block` ,  `i3lock`and`i3status`. And in some distributions,  `i3` may only refer to `i3wm`.
+  -  Suitable terminal (see [terminal](#terminal), select a terminal emulator )
   -  `dmenu`  Applications launcher
   -  `feh`   image viewer , show wallpaper
 
@@ -41,21 +43,24 @@
 
 ## configure i3
 
-- Downlod this config and extra it,  put `i3` and `i3status` in the `~/.config/` , and put `Pictures`(including some sample wallpapers) in the current user's home directory (`~/`). 
+- Downlod this config and extra it,  put `i3` and `i3status` in the `~/.config/` , and put `Pictures`(including some sample wallpapers) in the current user's home directory (`~/`).
 
   If you need to display the tray icon, you may need to refer to the following section of the [tray Icons](#tray Icons) for configuration.
 
-  A simple initial configuration can be done using the script `config-zh.sh`. 
+  A simple initial configuration can be done using the script `config-zh.sh`.
 
-or 
+or
 
 - execute this command:
 
   ```shell
-  curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip && unzip i3.zip && cd i3wm-config-master && unzip Pictures.zip && cp -r i3 ~/.config && cp -r Pictures ~/ && chmod +x *.sh && chmod +x */*.sh && ./config-en.sh
+  curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip
+  unzip i3.zip
+  cd i3wm-config-master
+  bash config.sh
   ```
 
-If it show `xrandr: command not found` ,  you need to install `xorg-xrandr` , then execute the above command again.
+  If it show `xrandr: command not found` ,  you need to install `xorg-xrandr` , then execute the above command again.
 
 # Introductions for the configs
 
@@ -76,7 +81,7 @@ For other i3wm default shortcuts , see the  **i3wm related documentation** or vi
 
 The following are the custom shortcuts in this configuration file (Reference vim and windows usage habits).
 
-- `Super`  Temporarily display i3bar (will be hidden after releasing the `Super` key) 
+- `Super`  Temporarily display i3bar (will be hidden after releasing the `Super` key)
 - `Super`+`m`  switch i3bar show/hideen mode
 
 - xfce dropdown terminal  `Alt`+`/`
@@ -92,13 +97,13 @@ The following are the custom shortcuts in this configuration file (Reference vim
 
     "PrtSc" is "PrintScreen" key , need `scrot`.
 
-- open filemanager  `Super`+`e` 
+- open filemanager  `Super`+`e`
 
     need `thunar`（e-explore）
 
-- close window  `Alt`+`F4` 
+- close window  `Alt`+`F4`
 
-- hide window and show the hide window `Super`+`minus` and `Super`+`plus` 
+- hide window and show the hide window `Super`+`minus` and `Super`+`plus`
 
     "minus" is "-" key ,and "plus" is "+" key. Here, in order to avoid confusion with +, the name is described in English.
 
@@ -151,7 +156,7 @@ The following are the custom shortcuts in this configuration file (Reference vim
 - adjust the volume and brightness ( for laptop)
 
   - volume
-    - `Fn` and volume key 
+    - `Fn` and volume key
     - use `alsamixer` (need alsa-utils)
 
     - `Fn` and brightness key （need a power manager tool , recommend `mate-power-manager`)
@@ -169,7 +174,7 @@ The following are the custom shortcuts in this configuration file (Reference vim
 - lock screen
 
   - background path :  `~/Pictures/wallpaper/lock/lock.jpg`
-  - lock : `Super`+`Alt`+`l` 
+  - lock : `Super`+`Alt`+`l`
   - unlock : input your user password , then press "Enter" key .
 
 
@@ -261,7 +266,7 @@ so , **eDP1** is my display device's name , if your display device's name is not
 
 
 
-Or you can try these comands for modification:
+Or you can try these comands for modification（`xrandr`need`xorg-xrandr`）:
 
 ```shell
 name=`xrandr | sed -n '2p' | cut -d ' ' -f 1`
@@ -274,7 +279,7 @@ If it show `xrandr: command not found` , install `xorg-xrandr` , then excuted co
 
 - not found this package while installing
 
-  Maybe this package  is another name on your distribution. Using the fuzzy search in your pckage manger, also search the real name in this site https://pkgs.org.
+  Maybe this package  is another name on your distribution. Using the fuzzy search in your package manger,  also search the real name in this site https://pkgs.org.
 
 - emoji need a font such as `fonts-symbola ` (perhaps its name is `ttf-symbola`)
 
@@ -302,7 +307,7 @@ edit `~/.Xresources` add (example) :
 Of course, the text under the high screen is too small, you can also adjust the font size (you can use lxappearance).
 
 - turn off waring sound（alarm sound/beep sound）
-  see[PC speaker](https://wiki.archlinux.org/index.php/PC_speaker) 
+  see[PC speaker](https://wiki.archlinux.org/index.php/PC_speaker)
   `echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf`
   or
   `amixer set channel 0% mute`(need `alsa-utils`)

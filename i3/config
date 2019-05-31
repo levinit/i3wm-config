@@ -1,4 +1,4 @@
-# i3 config file
+# i3 config file by Levinit  https://github.com/levinit
 # see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Super key(mod4 =windows logo key/Command key)
@@ -22,6 +22,7 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # terminal
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+
 # xfce drop down terminal
 bindsym mod1+slash exec xfce4-terminal --drop-down
 
@@ -32,13 +33,13 @@ bindsym $mod+Shift+c exec chromium
 # printscreen--scrot(Print=PrtSc/PrintScreen)
 bindsym $mod+Print exec scrot
 
-# GUI file manager
-bindsym $mod+e exec --no-startup-id thunar 
+# GUI file manager -- thunar
+bindsym $mod+e exec --no-startup-id thunar
 
-# app finder
-bindsym mod1+F2 exec --no-startup-id xfce4-appfinder 
+# xfce4 app finder
+bindsym mod1+F2 exec --no-startup-id xfce4-appfinder
 
-# bar toggle, hide or show 
+# bar toggle, hide or show
 bindsym $mod+m bar mode toggle
 
 #===appearance===
@@ -116,14 +117,14 @@ bar {
     inactive_workspace #636d72 #2d2d2d #dedede
     urgent_workspace #ffffff #900000 #d23d32
     }
-    
+
 #height 30
 }
 
-# tray icons(eDP1 is the display device's name,use the command "xrandr" to see.)
+# tray icons(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
 exec --no-startup-id xrandr --output eDP1 --primary
 
-# external display device(use the command "xrandr" to see the display device name)
+# external display device(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
 #exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
 
 #===workspace control===

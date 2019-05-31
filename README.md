@@ -2,18 +2,20 @@
 
 ---
 
-![](arch-i3.jpg)
+![](screenshot.png)
 
 # 安装配置
 
 ## 安装软件
 
+可使用包管理器或在[pkgs.org](https://pkgs.org)搜索关键字以确定包名。
+
 - 基本
-  - `i3 `：某些发行版中`i3`可能为一个包组名，它包含i3窗口管理器和其他组件，`i3-wm` 、 `i3-gaps`、 `i3block` 、 `i3lock`和`i3status`，另一些发行版中`i3`可能仅仅指`i3wm`。（可在[pkgs.rog](https://pkgs.org)搜索关键字以确定包名）
+  - `i3 `：某些发行版中`i3`可能为一个包组名，它包含i3窗口管理器和其他组件，`i3-wm` 、 `i3-gaps`、 `i3block` 、 `i3lock`和`i3status`，另一些发行版中`i3`可能仅仅指`i3wm`。
   - 适合的终端（参照下文[终端](#终端) 选择一个终端）
   - `dmenu`  程序启动器
   - `feh`  图片浏览器，展示壁纸
-- 可选
+- 配套可选
   - `xcompmgr` 终端透明
 
   - `scrot`   截屏（本配置使用的截屏快捷键调用此工具）
@@ -51,10 +53,13 @@
 - 直接执行：
 
   ```shell
-  curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip && unzip i3.zip && cd i3wm-config-master && unzip Pictures.zip && cp -r i3 ~/.config && cp -r Pictures ~/ && chmod +x *.sh && chmod +x */*.sh && ./config-zh.sh
+  curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip
+  unzip i3.zip
+  cd i3wm-config-master
+  bash config.sh
   ```
-
-如果提示`xrandr: command not found`，则需要先安装`xorg-xrandr`再执行上述命令。
+  
+  如果提示`xrandr: command not found`，则需要先安装`xorg-xrandr`再执行上述命令。
 
 # 本配置的说明
 
@@ -256,7 +261,7 @@ eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 310mm x 
 
 其中的`eDP1`便是我的显示设备名称。如果你的显示设备名称不是`eDP1` ，那么需要修改`exec --no-startup-id xrandr --output eDP1 --primary`这行中`eDP1`为你的显示设备的名字。
 
-或者你可以尝试使用一下命令自动修改：
+或者你可以使用xrandr（需要安装有`xorg-xrandr`）获取设备信息后自行修改：
 
 ```shell
 name=`xrandr | sed -n '2p' | cut -d ' ' -f 1`
