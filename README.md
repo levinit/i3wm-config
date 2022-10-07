@@ -248,7 +248,7 @@
 
 > exec --no-startup-id xrandr --output eDP1 --primary
 
-其中eDP1是我的计算机的显示设备的名字。使用`xrandr`查看计算机显示设备名称。
+其中eDP1是我的计算机的显示设备的名字。使用`xrandr | grep connected`查看计算机显示设备名称。
 
 例如我的显示内容有：
 

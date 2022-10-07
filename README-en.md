@@ -253,7 +253,7 @@ Open [i3/config](i3/config) , find this line :
 
 > exec --no-startup-id xrandr --output eDP1 --primary
 
-eDP1 is the display device's name , you can use `xrandr`  to get your display device's name .
+eDP1 is the display device's name , you can use `xrandr | grep connected`  to get your display device's name .
 
  this is my display device info:
 
